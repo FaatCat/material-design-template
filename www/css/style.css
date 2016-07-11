@@ -20,7 +20,9 @@
     min-height: 632px;
     max-height: 864px;
     position: relative;
-    background-color: #2196F3;
+    /*background-color: #2196F3;*/
+    background: url(../img/plantation-min.jpg) no-repeat;
+    background-size: cover;
 }
 
 #nav_f{
