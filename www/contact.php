@@ -43,7 +43,7 @@ if (isset($_POST['email'])) {
         $email_message .= "Name: " . $name . "\n";
         $email_message .= "Role: " . $role . "\n";
         $email_message .= "Email: " . $email . "\n";
-        $email_message .= "Problem: " . $message . "\n";
+        $email_message .= "Problem: " . $problem . "\n";
         $email_message .= "Additional Info: " . $additional_info . "\n";
 
 
@@ -58,6 +58,7 @@ if (isset($_POST['email'])) {
     } catch (Exception $e) {
         echo "An unexpected error occurred. Please send an email to DeepPalmProject@gmail.com instead.<br /><br />";
         echo "Sorry for the inconvenience!";
+        error_log($e->getMessage(),0,"DeepPalmProject@gmail.com");
     }
 
     ?>
