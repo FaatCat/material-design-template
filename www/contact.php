@@ -1,94 +1,76 @@
 <?php
 
-if(isset($_POST['email'])) {
+if (isset($_POST['email'])) {
 
-    $email_to = "joash.pereira@gmail.com";
- 
-    $email_subject = "Website Contact";
+    $email_to = "deeppalmproject@gmail.com";
 
- 
-    function died($error) {
- 
+    $email_subject = "DeepPalm Contact";
+
+
+    function died($error)
+    {
+
         // your error code can go here
- 
+
         echo "We are very sorry, but there were error(s) found with the form you submitted. ";
- 
-        echo "These errors appear below.<br /><br />";
- 
-        echo $error."<br /><br />";
- 
+
+        echo $error . "<br /><br />";
+
         echo "Please go back and fix these errors.<br /><br />";
- 
+
+        echo "If the error persists, send an email to DeepPalmProject@gmail.com<br /><br />";
+
         die();
- 
     }
- 
-     
- 
-    // validation expected data exists
- 
-    if(!isset($_POST['name']) ||
- 
-        !isset($_POST['email']) ||
- 
-        !isset($_POST['message'])) {
- 
-        died('We are sorry, but there appears to be a problem with the form you submitted.');       
- 
-    }
- 
-     
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $message = $_POST['message'];
- 
- 
-    $email_message = "Form details below.\n\n";
- 
-     
- 
-    function clean_string($string) {
- 
-      $bad = array("content-type","bcc:","to:","cc:","href");
- 
-      return str_replace($bad,"",$string);
- 
-    }
- 
-     
- 
-    $email_message .= "Name: ".clean_string($name)."\n";
- 
-    $email_message .= "Email: ".clean_string($email)."\n";
- 
-    $email_message .= "Message: ".clean_string($message)."\n";
 
- 
-	// create email headers
-	 
-	$headers = 'From: '.$email."\r\n".
-	 
-	'Reply-To: '.$email."\r\n" .
-	 
-	'X-Mailer: PHP/' . phpversion();
-	 
-	@mail($email_to, $email_subject, $email_message, $headers);  
+    try {
+        // validation expected data exists
+
+        if (!isset($_POST['name']) ||
+            !isset($_POST['email'])
+        ) {
+            died('Please include your name or email in the form.');
+        }
 
 
-?>
- 
- 
- 
-<!-- include your own success html here -->
- 
- 
- 
-Thank you for contacting me. Will be in touch with you very soon.
- 
- 
- 
-<?php
- 
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $role = $_POST['role'];
+        $problem = $_POST['problem'];
+        $additional_info = $_POST['additional_info'];
+
+        $email_message = "Form details:\n\n";
+        $email_message .= "Name: " . $name . "\n";
+        $email_message .= "Role: " . $role . "\n";
+        $email_message .= "Email: " . $email . "\n";
+        $email_message .= "Problem: " . $message . "\n";
+        $email_message .= "Additional Info: " . $additional_info . "\n";
+
+
+        // create email headers
+
+        $headers = 'From: ' . $email . "\r\n" .
+            'Reply-To: ' . $email . "\r\n" .
+//        'cc: ' . $email . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+        $email_message = wordwrap($email_message,70);
+        mail($email_to, $email_subject, $email_message, $headers);
+    } catch (Exception $e) {
+        echo "An unexpected error occurred. Please send an email to DeepPalmProject@gmail.com instead.<br /><br />";
+        echo "Sorry for the inconvenience!";
+    }
+
+    ?>
+
+
+    <!-- include your own success html here -->
+
+
+    Thank you for contacting us. We will be in touch as soon as possible.
+
+
+    <?php
+
 }
- 
+
 ?>
