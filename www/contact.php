@@ -72,12 +72,29 @@ if (isset($_POST['email'])) {
     }
 
     ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <meta name="theme-color" content="#009999">
+        <title>Agriculture Analytics | Agritix</title>
 
+        <!-- CSS  -->
+        <link href="min/plugin-min.css" type="text/css" rel="stylesheet">
+        <link href="min/custom-min.css" type="text/css" rel="stylesheet">
+    </head>
+    <body id="top" class="scrollspy">
+    <p>Thank you for contacting us. We will be in touch as soon as possible.</p>
+    <p>You will be redirected to the main page in 5 seconds.</p>
 
-    <!-- include your own success html here -->
+    <script>window.setTimeout(function(){
+    window.location.href = "https://www.google.co.in";
 
-
-    Thank you for contacting us. We will be in touch as soon as possible.
+    }, 5000);
+    </script>
+    </body>
+    </html>
     <?php
 
 } else {
