@@ -36,8 +36,7 @@ if (isset($_POST['email'])) {
     try {
         // validation expected data exists
 
-        if (!isset($_POST['name']) ||
-            !isset($_POST['email'])
+        if (!isset($_POST['email']) || empty($_POST['email'])
         ) {
             died('Please include your name or email in the form.', $admin_email);
         }
