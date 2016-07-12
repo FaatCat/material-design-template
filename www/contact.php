@@ -1,13 +1,23 @@
-<?php
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+    ga('create', 'UA-80639342-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<?php
+$admin_email = "agritix@gmail.com";
 if (isset($_POST['email'])) {
 
-    $email_to = "deeppalmproject@gmail.com";
+    $email_to = $admin_email;
 
-    $email_subject = "DeepPalm Contact";
+    $email_subject = "Agritix Contact";
 
 
-    function died($error)
+    function died($error, $admin_email)
     {
 
         // your error code can go here
@@ -18,7 +28,7 @@ if (isset($_POST['email'])) {
 
         echo "Please go back and fix these errors.<br /><br />";
 
-        echo "If the error persists, send an email to DeepPalmProject@gmail.com<br /><br />";
+        echo "If the error persists, send an email to " . $admin_email . "<br /><br />";
 
         die();
     }
@@ -29,7 +39,7 @@ if (isset($_POST['email'])) {
         if (!isset($_POST['name']) ||
             !isset($_POST['email'])
         ) {
-            died('Please include your name or email in the form.');
+            died('Please include your name or email in the form.', $admin_email);
         }
 
 
@@ -56,9 +66,9 @@ if (isset($_POST['email'])) {
         $email_message = wordwrap($email_message,70);
         mail($email_to, $email_subject, $email_message, $headers);
     } catch (Exception $e) {
-        echo "An unexpected error occurred. Please send an email to DeepPalmProject@gmail.com instead.<br /><br />";
+        echo "An unexpected error occurred. Please send an email to $admin_email instead.<br /><br />";
         echo "Sorry for the inconvenience!";
-        error_log($e->getMessage(),0,"DeepPalmProject@gmail.com");
+        error_log($e->getMessage(),0,"$admin_email");
     }
 
     ?>
@@ -68,10 +78,10 @@ if (isset($_POST['email'])) {
 
 
     Thank you for contacting us. We will be in touch as soon as possible.
-
-
     <?php
 
+} else {
+    header('location: /');
 }
 
 ?>
