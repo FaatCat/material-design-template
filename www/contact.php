@@ -58,7 +58,7 @@ if (isset($_POST['email'])) {
 
         // create email headers
 
-        $headers = 'From: ' . $email . "\r\n" .
+        $headers = 'From: ' . $admin_email . "\r\n" .
             'Reply-To: ' . $email . "\r\n" .
 //        'cc: ' . $email . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
@@ -88,7 +88,7 @@ if (isset($_POST['email'])) {
     <p>You will be redirected to the main page in 5 seconds.</p>
 
     <script>window.setTimeout(function(){
-    window.location.href = "https://www.google.co.in";
+    window.location.href = "/";
 
     }, 5000);
     </script>
